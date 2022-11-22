@@ -1,0 +1,224 @@
+@charset "utf-8";/* cssファイルの1行目に記述 */
+
+@use 'normalize';/* リセットcssがある場合はそのファイルを読み込む記述 */
+
+/**
+ * ***************************************
+ * ページ全体に関わるCSS
+ * ***************************************
+ */
+ html *,
+ :before,
+ :after {
+     box-sizing: border-box;/* ボーダーもボックス内に含める */
+    }
+    
+body {
+        font-family: 'Noto Sans JP', sans-serif;
+        color: #333;  
+    }
+
+/**
+* ***************************************
+* ヘッダー
+* ***************************************
+*/
+
+// ヘッダー全体
+.header-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4%;
+    @media (min-width: 768px) {
+        margin: 0 auto;
+        max-width: 1000px;
+        padding: 20px;
+    }
+}
+//  サイトタイトル
+.site-title {
+    margin: 0;/* h1のデフォルトの余白を削除 */
+    padding: 16px 32px 17px;
+    font-size: 2rem;
+    line-height: 1;
+    border: 1px solid #000;
+}
+// モバイル用ビゲーション開閉ボタン
+.navbtn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    padding: 5px 0;
+    span {
+        display: block;
+        margin: 10px;
+        border-bottom: 3px solid #333;
+    }
+    // ボタンをクリックしたときのspanの動作（三本線が×になる）
+    .trigger:nth-child(1) {
+        transform: translateY(12px) rotate(45deg);/* Y軸方向に12px移動、時計回りに45度回転 */
+        transition: .2s;/* 0.2秒の速さで */
+    }
+
+    .trigger:nth-child(2) {
+        opacity: 0;/* 真ん中の線は不要なので透明にする */
+    }
+
+    .trigger:nth-child(3) {
+        transform: translateY(-13px) rotate(-45deg);/* Y軸方向に-13px移動、半時計回りに45度回転 */
+        transition: .2s;/* 0.2秒の速さで */
+    }
+
+    @media (min-width: 768px) {
+        display: none;/* PCのときはボタンを表示しない */
+    }  
+}
+
+// ナビゲーション
+.header-navmenu {
+    display: none;
+    position: absolute;
+    top: 97px;
+    right: 0;
+    width: 100%;
+    text-align: right;
+    background: rgba(255, 255, 255, 0.8);
+    a {
+        display: block;
+        margin-left: 20px;
+        margin-right: 20px;
+        padding: 16px 0 17px;
+        font-size: 2rem;
+        font-weight: bold;
+        text-decoration: none;
+        color: #333;
+        &:hover {
+            opacity: .9;
+            text-decoration: underline;
+        }
+    }
+    @media (min-width: 768px) {
+        top: 0;
+        right: 0;
+        display: flex !important;
+        flex-direction: row;
+        justify-content: flex-end;
+        background: none;
+    }
+}
+
+/**
+* ***************************************
+* メイン
+* ***************************************
+*/
+
+//  メイン画像
+.main-visual-container {
+    img {
+        display: block;
+        margin: 0 auto;
+        max-width: 100%;
+        max-height: 400px;
+    }
+}
+
+// 各コンテナ共通
+.about-container, .works-container {
+    padding: 50px 4% 0;
+    @media (min-width: 768px) {
+        margin: 0 auto;
+        max-width: 1000px;
+        padding: 60px 20px 0;
+    }
+}
+
+h2 {
+    margin: 0;/* h2のデフォルトの余白を削除 */
+    padding-bottom: 8%;
+    font-size: 2rem;
+    text-align: center;
+}
+
+/* リストのデフォルトの余白を削除 */
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+//  About
+.profile-box {
+    display: flex;
+    justify-content: center;
+    .profile-img {
+        flex: 0 0 100px;
+        margin-right: 8%;
+        @media (min-width: 768px) {
+            flex: 0 0 300px;
+            margin-right: 16%;
+        }
+        img {
+            max-width: 100%;
+            padding: 3px;
+            border: 3px solid #999;
+            border-radius: 150px;
+        }
+    }
+    .profile-text {
+        line-height: 1.7;
+        h3 {
+            margin: 0;/* h3のデフォルトの余白を削除 */
+            padding-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        li {
+            padding-left: 1rem;
+            font-size: 0.875rem;
+            text-indent: -1rem;/* スマホで改行になったときの調整（黒丸の下に文字が来ないように） */
+            @media (min-width: 768px) {
+                font-size: 1.125rem;
+            }
+        }
+    }
+}
+
+// Works
+.product-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    column-gap: 20px;
+    row-gap: 30px;
+    .works-img {
+        img {
+            margin-bottom: 10px;
+            width: 100%;
+        }
+    }
+    .works-text {
+        font-size: 0.875rem;
+    }
+}
+
+/**
+* ***************************************
+* フッター
+* ***************************************
+*/
+
+.footer-continer {
+    padding: 50px 4% 20px;
+    @media (min-width: 768px) {
+        margin: 0 auto;
+        max-width: 1000px;
+        padding: 60px 20px 20px;
+    }
+    .copyright {
+        margin: 0;
+        text-align: center;
+    }
+}
